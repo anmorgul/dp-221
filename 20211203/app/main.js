@@ -51,21 +51,20 @@ function getHTML(artwork) {
         <h5 class="card-title">${artwork.title}</h5>
         <h6 class="card-subtitle mb-2 text-muted">ID:${artwork.id}</h6>
         <p class="card-text">${artwork.thumbnail.alt_text}</p>
-
+        <footer>
+          <small id=auth${artwork.id} class="text-muted">
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </small>
+        </footer>
       </div>
     </div>`;
   DATA.output.insertAdjacentHTML("beforeend", partHTML);
   getdetails(artwork);
 };
-{/* <footer>
-<small id=auth${artwork.id} class="text-muted">
-  <div class="d-flex justify-content-center">
-    <div class="spinner-border spinner-border-sm" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-</small>
-</footer> */}
 
 function getdetails(artwork) {
   const url = `${artwork.api_link}`;
@@ -75,10 +74,10 @@ function getdetails(artwork) {
       const imageURL = DATA.links.getImage(details.data.image_id);
       const imgHTML = `<img  class="card-img-top"  src="${imageURL} ">`;
       const oneImage = document.querySelector(`#img${artwork.id}`);
-      // const author = document.querySelector(`#auth${artwork.id}`);
+      const author = document.querySelector(`#auth${artwork.id}`);
       oneImage.innerHTML = "";
       oneImage.insertAdjacentHTML("beforeend", imgHTML);
-      // author.innerHTML = details.data.artist_title || "Author unknown";
+      author.innerHTML = details.data.artist_title || "Author unknown";
     });
 };
 
