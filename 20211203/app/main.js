@@ -1,6 +1,6 @@
 //listeners
 document.querySelector(".on-search").addEventListener("click", onSearch);
-// document.querySelector(".on_clear").addEventListener("click", dropAll);
+document.querySelector(".on_clear").addEventListener("click", dropAll);
 
 const DATA = {
   input: document.querySelector(".inp-search"),
@@ -81,10 +81,10 @@ function getdetails(artwork) {
     });
 };
 
-// function dropAll() {
-//   removeContent();
-//   DATA.input.value = "";
-// };
+function dropAll() {
+  removeContent();
+  DATA.input.value = "";
+};
 
 function removeContent() {
   DATA.output.innerHTML = "";
